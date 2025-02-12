@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 use App\Models\Ticket;
-use Illuminate\Console\View\Components\Component;
+use Livewire\Component;
 
 class QueueScreen extends Component
 {
