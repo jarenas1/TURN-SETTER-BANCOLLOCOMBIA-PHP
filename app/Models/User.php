@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use RoleEnum;
 
 class User extends Authenticatable
 {
@@ -21,6 +22,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+    ];
+
+    protected $casts = [
+        'role' => RoleEnum::class,
     ];
 
     /**
