@@ -4,7 +4,9 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Counter;
 use Illuminate\Notifications\Notifiable;
 use RoleEnum;
 
@@ -27,6 +29,11 @@ class User extends Authenticatable
     protected $casts = [
         'role' => RoleEnum::class,
     ];
+
+    public function counter(): HasOne
+    {
+        return $this->hasOne(Counter::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
