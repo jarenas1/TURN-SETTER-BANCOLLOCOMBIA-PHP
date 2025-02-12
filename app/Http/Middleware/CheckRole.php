@@ -3,14 +3,22 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class CheckRole
 {
     public function handle($request, Closure $next, $role)
-    {
-        if ($request->user()->role->value !== $role) {
-            abort(403);
-        }
-        return $next($request);
+{
+    if (!Auth::check()) {
+        return redirect()->route('login');
     }
+
+    $userRole = Auth::user()->role->value;
+    
+    if ($userRole !== $role) {
+        abort(403, 'Acceso no autorizado');
+    }
+
+    return $next($request);
+}
 }
